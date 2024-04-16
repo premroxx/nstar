@@ -8,7 +8,7 @@ az = "us-east-1a"
 bucket = "nstar-east1"
 
 #App EC2
-ami = "ami-0c460fdf6a8a1edef"
+ami = "ami-061bb96adf14c4bba"
 
 #App Dynamodb
 key_name              = "nstar_index"
