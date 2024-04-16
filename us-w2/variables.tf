@@ -36,3 +36,10 @@ variable "dynamo_table_key_type" {
   default = "S"
 }
 
+variable "r53_zone_name" {
+  default = "pkumar.test"
+}
+
+variable "r53_domain_name" {
+  default = "nstar"
+}
