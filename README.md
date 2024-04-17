@@ -1,10 +1,13 @@
 - **modules**: Contains reusable modules for configuring specific resources.
-
-  - `dynamodb`: tf for DynamoDB tables.
-  - `instances`: tf for EC2 instances.
-  - `networks`: tf for VPCs, subnets etc
+  - `alb`: tf for Load Balancer.
+  - `ecs`: tf for Creating nginx ECS Cluster.
   - `s3`: tf for s3
 
-- **us-e1**: Configuration for managing resources in the us-east-1 region.
-- **us-w2**: Configuration for managing resources in the us-wast-2 region.
+- **common**: Contains common modules across regions.
+  - `dynamodb`: tf for global DynamoDB tables.
+  - `iam`: tf for IAM Roles.
 
+- **state**: for cconfiguring region specific-state.
+
+- **us-e1**: Configuration for managing resources in the us-east-1 region.
+- **us-w2**: Configuration for managing resources in the us-west-2 region.
