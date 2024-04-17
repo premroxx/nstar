@@ -27,7 +27,7 @@ resource "aws_alb_target_group" "nginx" {
   port       = 80
   protocol   = "HTTP"
   vpc_id     = var.vpc_id
-  depends_on = ["aws_alb.nstar-us-alb"]
+  depends_on = [aws_alb.nstar-us-alb]
  
   stickiness {
     type            = "lb_cookie"

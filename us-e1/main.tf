@@ -45,26 +45,6 @@ module "ecs" {
 #   bucket = var.bucket
 # }
 
-# module "dynamodb" {
-#   source                = "../modules/dynamodb"
-#   dynamo_table_name     = var.dynamo_table_name
-#   dynamo_table_key      = var.dynamo_table_key
-#   dynamo_table_key_type = var.dynamo_table_key_type
-# }
-
-# module "instances" {
-#   source           = "../modules/instances"
-#   vpc_id           = module.networks.vpc_id
-#   public_subnet_id = module.networks.public_subnet_id
-#   ami              = var.ami
-#   key_name         = var.key_name
-#   #depends_on       = [module.dynamodb]
-# }
-
-# data "aws_route53_zone" "default" {
-#   name = var.r53_zone_name
-# }
-
 # resource "aws_route53_record" "cdnv4" {
 #   zone_id = data.aws_route53_zone.default.zone_id
 #   name = format(
