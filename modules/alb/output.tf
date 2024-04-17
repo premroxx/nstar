@@ -4,7 +4,7 @@ output "lb_sg_id" {
 }
 
 output "alb_arn" {
-  value = aws_alb.sys-eu-alb.arn
+  value = aws_alb.nstar-us-alb.arn
 }
 
 output "aws_alb_target_group_id" {

@@ -1,6 +1,6 @@
 ## ALB
-resource "aws_alb" "sys-eu-alb" {
-  name            = "sys-web-eu-alb"
+resource "aws_alb" "nstar-us-alb" {
+  name            = "nstar-web-eu-alb"
   subnets         = var.public_subnet_id
   security_groups = ["${aws_security_group.lb_sg.id}"]
   enable_http2    = "true"
@@ -8,11 +8,11 @@ resource "aws_alb" "sys-eu-alb" {
 }
 
 output "alb_output" {
-  value = "${aws_alb.sys-eu-alb.dns_name}"
+  value = "${aws_alb.nstar-us-alb.dns_name}"
 }
 
 resource "aws_alb_listener" "front_end" {
-  load_balancer_arn = "${aws_alb.sys-eu-alb.id}"
+  load_balancer_arn = "${aws_alb.nstar-us-alb.id}"
   port              = "80"
   protocol          = "HTTP"
  
@@ -27,7 +27,7 @@ resource "aws_alb_target_group" "nginx" {
   port       = 80
   protocol   = "HTTP"
   vpc_id     = var.vpc_id
-  depends_on = ["aws_alb.sys-eu-alb"]
+  depends_on = ["aws_alb.nstar-us-alb"]
  
   stickiness {
     type            = "lb_cookie"

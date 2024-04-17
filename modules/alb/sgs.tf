@@ -2,7 +2,7 @@ resource "aws_security_group" "lb_sg" {
   description = "controls access to the application ELB"
  
   vpc_id = var.vpc_id
-  name   = "sys-web-ELB"
+  name   = "nstar-web-ELB"
  
   ingress {
     protocol    = "tcp"

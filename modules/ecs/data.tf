@@ -1,5 +1,5 @@
 # Get the latest ECS AMI
-data "aws_ami" "sys-ecs-ami" {
+data "aws_ami" "nstar-ecs-ami" {
   most_recent = true
  
   filter {
@@ -18,7 +18,7 @@ data "template_file" "ecs-cluster" {
   template = "${file("../modules/ecs/ecs-cluster.tpl")}"
  
   vars = {
-    ecs_cluster = "${aws_ecs_cluster.sys-web.name}"
+    ecs_cluster = "${aws_ecs_cluster.nstar-web.name}"
   }
 }
 
