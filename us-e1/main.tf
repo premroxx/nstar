@@ -11,33 +11,33 @@ module "vpc" {
   name = "myvpc-${var.region}"
   cidr = "10.100.0.0/16"
 
-  azs             = ["us-east-1a", "us-east-1b"]
-  private_subnets = ["10.100.1.0/24", "10.100.2.0/24"]
-  public_subnets  = ["10.100.101.0/24", "10.100.102.0/24"]
-  database_subnets    = ["10.100.201.0/24", "10.100.202.0/24"]
+  azs              = ["us-east-1a", "us-east-1b"]
+  private_subnets  = ["10.100.1.0/24", "10.100.2.0/24"]
+  public_subnets   = ["10.100.101.0/24", "10.100.102.0/24"]
+  database_subnets = ["10.100.201.0/24", "10.100.202.0/24"]
 
   enable_nat_gateway = true
   enable_vpn_gateway = true
 
   tags = {
-    Terraform = "true"
+    Terraform   = "true"
     Environment = "dev"
   }
 }
 
 module "alb" {
-  source = "../modules/alb"
-  vpc_id = module.vpc.vpc_id
+  source           = "../modules/alb"
+  vpc_id           = module.vpc.vpc_id
   public_subnet_id = module.vpc.public_subnets
 }
 
 module "ecs" {
-  source = "../modules/ecs"
-  vpc_id = module.vpc.vpc_id
-  alb_sg_id = module.alb.lb_sg_id
+  source                  = "../modules/ecs"
+  vpc_id                  = module.vpc.vpc_id
+  alb_sg_id               = module.alb.lb_sg_id
   aws_alb_target_group_id = module.alb.aws_alb_target_group_id
-  public_subnet_ids = module.vpc.public_subnets
-  depends_on       = [module.alb]
+  public_subnet_ids       = module.vpc.public_subnets
+  depends_on              = [module.alb]
 }
 
 # module "s3" {
