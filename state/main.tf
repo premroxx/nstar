@@ -21,3 +21,10 @@ module "state-usw2" {
    dynamodb = "terraform_locks_us-west-2"
    region = "us-west-2"
 }
+
+module "state-common" {
+   source = "./module"
+   bucket = "nstar-tfstate-sandbox-common"
+   dynamodb = "terraform_locks_common"
+   region = "us-east-1"
+}
