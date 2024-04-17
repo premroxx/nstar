@@ -7,14 +7,14 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "nstar-tfstate-sandbox-east1"
+    bucket         = "nstar-tfstate-sandbox-common"
     region         = "us-east-1"
     key            = "terraform.tfstate"
-    dynamodb_table = "terraform_locks_us-east-1"
+    dynamodb_table = "terraform_locks_common"
     encrypt        = true
   }
 }
 
 provider "aws" {
-  region = var.region
+  region = "us-east-1"
 }
