@@ -51,7 +51,7 @@ resource "aws_route53_record" "nstar" {
   )
   type           = "CNAME"
   ttl            = "5"
-  records        = module.alb.alb_url
+  records        = [module.alb.alb_url]
   set_identifier = "${var.region}-star"
 
   latency_routing_policy {
