@@ -10,3 +10,7 @@ output "alb_arn" {
 output "aws_alb_target_group_id" {
       value = aws_alb_target_group.nginx.id
 }
+
+output "alb_url" {
+  value = aws_alb.nstar-us-alb.dns_name
+}

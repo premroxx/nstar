@@ -39,23 +39,23 @@ module "ecs" {
 # }
 
 
-# data "aws_route53_zone" "default" {
-#   name = var.r53_zone_name
-# }
+data "aws_route53_zone" "default" {
+  name = var.r53_zone_name
+}
 
-# resource "aws_route53_record" "cdnv4" {
-#   zone_id = data.aws_route53_zone.default.zone_id
-#   name = format(
-#     "%s.%s",
-#     var.r53_domain_name,
-#     data.aws_route53_zone.default.name,
-#   )
-#   type           = "A"
-#   ttl            = "60"
-#   records        = module.instances.public_ip
-#   set_identifier = "cdn-${var.region}-v4"
+resource "aws_route53_record" "nstar" {
+  zone_id = data.aws_route53_zone.default.zone_id
+  name = format(
+    "%s.%s",
+    var.r53_domain_name,
+    data.aws_route53_zone.default.name,
+  )
+  type           = "CNAME"
+  ttl            = "5"
+  records        = module.alb.alb_url
+  set_identifier = "${var.region}-star"
 
-#   latency_routing_policy {
-#     region = var.region
-#   }
-# }
+  latency_routing_policy {
+    region = var.region
+  }
+}
